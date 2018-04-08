@@ -1,15 +1,14 @@
 #!/bin/bash
 set -e;
 set -u;
-wget https://raw.githubusercontent.com/pypa/setuptools/bootstrap/ez_setup.py;
-/usr/local/bin/python2.6 ez_setup.py;
-/usr/local/bin/python3.5 ez_setup.py;
-/usr/local/bin/easy_install-2.6 pip;
-/usr/local/bin/easy_install-3.5 pip;
-/usr/local/bin/pip2.6 install virtualenv==1.9;
-/usr/local/bin/pip3.5 install virtualenv;
-/usr/local/bin/virtualenv2.6 py26env;
-/usr/local/bin/virtualenv3.5 py35env;
-rm ez_setup.py;
-rm setuptools*
+wget https://bootstrap.pypa.io/get-pip.py
+wget https://bootstrap.pypa.io/2.6/get-pip.py -O get-pip2.6.py
+/usr/local/bin/python2.6 get-pip2.6.py;
+/usr/local/bin/python3.5 get-pip.py;
+/usr/local/bin/pip2.6 install virtualenv pymongo;
+/usr/local/bin/pip3.5 install virtualenv pymongo;
+/usr/local/bin/virtualenv --python=/usr/local/bin/python2.6 py26env;
+/usr/local/bin/virtualenv --python=/usr/local/bin/python3.5 py35env;
+rm get-pip2.6.py
+rm get-pip.py;
 touch /home/vagrant/py_setuptools_pip.success;
