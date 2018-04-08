@@ -26,3 +26,8 @@
       creates: "/home/vagrant/install_{{ item | basename | replace('.tgz', '') }}.success"
     with_items:
       - "{{ python_versions }}"
+
+  - name: Ensure python environments are setup
+    script: install_setup_tools_pip.sh
+    args:
+      creates: /home/vagrant/py_setuptools_pip.success
