@@ -18,6 +18,5 @@ additional_packages:
   - xz-devel
 
 python_versions:
-  - https://www.python.org/ftp/python/2.5.6/Python-2.5.6.tgz
+  - https://www.python.org/ftp/python/2.6.9/Python-2.6.9.tgz
   - https://www.python.org/ftp/python/3.5.5/Python-3.5.5.tgz
-  - https://www.python.org/ftp/python/3.6.5/Python-3.6.5.tgz
