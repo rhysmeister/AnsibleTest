@@ -1,0 +1,28 @@
+---
+# tasks file for AnsibleTest
+  - name: Ensure epel is enabled
+    yum:
+      name: epel-release
+      state: installed
+
+  - name: Ensure additional packages are installed
+    yum:
+      name: "{{ item }}"
+      state: installed
+    with_items:
+      - "{{ additional_packages }}"
+
+  - name: Template out python installation script
+    template:
+      src: install_python_version.sh.j2
+      dest: "/home/vagrant/{{ item | basename | replace('.tgz', '') }}.sh"
+      mode: 0700
+    with_items:
+      - "{{ python_versions }}"
+
+  - name: Execute Python installation scripts if required
+    shell: "/home/vagrant/{{ item | basename | replace('.tgz', '') }}.sh"
+    args:
+      creates: "/home/vagrant/install_{{ item | basename | replace('.tgz', '') }}.success"
+    with_items:
+      - "{{ python_versions }}"

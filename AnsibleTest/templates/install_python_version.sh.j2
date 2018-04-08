@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e;
+set -x;
+
+# item should be a url to a python archive in the format https://www.python.org/ftp/python/2.5.6/Python-2.5.6.tgz
+
+function finish() {
+  s="$?";
+  if [ "$s" -ne 0 ]; then
+    touch "/home/vagrant/install_{{ item | basename | replace('.tgz', '') }}.failed" && rm -Rf "/home/vagrant/install_{{ item | basename | replace('.tgz', '') }}.success";
+  else
+    touch "/home/vagrant/install_{{ item | basename | replace('.tgz', '') }}.success" && rm -Rf "/home/vagrant/install_{{ item | basename | replace('.tgz', '') }}.failed";
+  fi;
+}
+
+trap finish EXIT;
+
+wget "{{ item }}";
+
+tar -xvzf "{{ item | basename }}";
+cd "{{ item | basename | replace('.tgz', '') }}";
+./configure --prefix=/usr/local --enable-unicode=ucs4 --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib";
+make && make altinstall;
+cd ../
+rm -Rf "{{ item | basename | replace('.tgz', '') }}";
+rm "{{ item | basename }}";
