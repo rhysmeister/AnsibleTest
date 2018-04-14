@@ -31,3 +31,44 @@
     script: install_setup_tools_pip.sh
     args:
       creates: /home/vagrant/py_setuptools_pip.success
+
+  - name: Ensure git dir exists in vagrant home
+    file:
+      name: /home/vagrant/git
+      state: directory
+      mode: 0755
+      owner: vagrant
+      group: vagrant
+
+  - name: Git clone projects
+    git:
+      repo: "{{ item }}"
+      dest: "/home/vagrant/git/{{ item | basename | replace('.git', '') }}"
+      update: "{{ update_git }}"
+    become: no
+    with_items:
+      - "{{ git_repos }}"
+
+  - name: Add MongoDB yum repo
+    yum_repository:
+      name: MongoDB36_Repository
+      description: MongoDB 3.6 Repository
+      baseurl: https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.6/x86_64/
+      gpgcheck: yes
+      enabled: yes
+      gpgkey: https://www.mongodb.org/static/pgp/server-3.6.asc
+    notify: yum-clean-metadata
+
+  - name: Ensure MongoDB packages are installed
+    yum:
+      name: mongodb-org
+      state: installed
+
+  - name: Ensure aliases exist
+    lineinfile:
+      path: /home/vagrant/.bash_profile
+      regexp: '^alias {{ item }}'
+      line: "alias {{ item }}"
+    become: no
+    with_items:
+      - "{{ aliases }}"

@@ -1,2 +1,5 @@
 ---
-# handlers file for AnsibleTest
+  - name: yum-clean-metadata
+    command: yum clean metadata
+    args:
+      warn: no
