@@ -9,3 +9,8 @@ Python 2.6 and 3.5 environments are provided. They can be activated as follows..
 cd /home/vagrant
 source py26env/bin/activate
 source py35env/bin/activate
+
+Both of these have been aliased in the .bash_profile for the vagrant user as follows;
+
+py26
+py35
