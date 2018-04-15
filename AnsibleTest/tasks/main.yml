@@ -73,7 +73,7 @@
     with_items:
       - "{{ aliases }}"
 
-  - name: Ensure bash scripts need for testing are present
+  - name: Ensure bash scripts needed for testing are present
     copy:
       src: "{{ item }}"
       dest: /home/vagrant/bash/
@@ -86,3 +86,12 @@
       - mongodb_3shards.sh
       - mongodb_replicaset.sh
       - teardown_mongo.sh
+
+  - name: Ensure playbooks needed for testing are present
+    copy:
+      src: "{{ item }}"
+      dest: /home/vagrant/playbooks/
+      owner: vagrant
+      group: vagrant
+    with_items:
+      - mongodb_replicaset.yml
