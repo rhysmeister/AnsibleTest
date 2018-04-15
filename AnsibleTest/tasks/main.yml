@@ -72,3 +72,13 @@
     become: no
     with_items:
       - "{{ aliases }}"
+
+  - name: Ensure bash scripts need for testing are present
+    copy:
+      src: "{{ item }}"
+      dest: /home/vagrant/bash/
+      owner: vagrant
+      group: vagrant
+      mode: 0755
+    with_items:
+      - mongodb_replicaset.sh
