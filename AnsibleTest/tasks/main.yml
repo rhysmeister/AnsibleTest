@@ -81,4 +81,8 @@
       group: vagrant
       mode: 0755
     with_items:
+      - config_mongos_server.sh
+      - mongodb_2shards.sh
+      - mongodb_3shards.sh
       - mongodb_replicaset.sh
+      - teardown_mongo.sh
