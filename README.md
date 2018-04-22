@@ -17,6 +17,12 @@ cd AnsibleTest
 vagrant up
 ```
 
+Then you can login to the environment;
+
+```Bash
+vagrant ssh
+```
+
 # Python Virtual Environments
 
 Python 2.6 and 3.5 environments are provided. They can be activated as follows...
