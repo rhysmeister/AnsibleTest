@@ -17,6 +17,8 @@ additional_packages:
   - libpcap-devel
   - xz-devel
   - psmisc
+  - python-devel
+  - libffi-devel
 
 python_versions:
   - https://www.python.org/ftp/python/2.6.9/Python-2.6.9.tgz
