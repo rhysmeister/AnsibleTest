@@ -19,6 +19,7 @@ pip install pymongo;
 pip install requests;
 pip install requests[security];
 pip install ansible;
+# pip install ordereddict;
 source /home/vagrant/py35env/bin/activate;
 pip install pymongo;
 pip install requests;
