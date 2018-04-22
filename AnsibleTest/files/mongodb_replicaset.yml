@@ -7,11 +7,15 @@
 
       - name: Setup a MongoDB Replicaset
         shell: /home/vagrant/bash/mongodb_replicaset.sh 3000 rs0
+        args:
+          creates: /tmp/mongodb*.sock
+        register: mongodb
         become: no
 
       - name: Wait a little bit
         pause:
           seconds: 10
+        when: mongodb.changed == True
 
       - name: Ensure replicaset exists
         mongodb_replicaset:
