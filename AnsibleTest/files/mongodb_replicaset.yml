@@ -5,6 +5,14 @@
 
     tasks:
 
+      - name: Setup a MongoDB Replicaset
+        shell: /home/vagrant/bash/mongodb_replicaset.sh 3000 rs0
+        become: no
+
+      - name: Wait a little bit
+        pause:
+          seconds: 10
+
       - name: Ensure replicaset exists
         mongodb_replicaset:
           login_user: admin

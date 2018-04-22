@@ -8,6 +8,6 @@ pkill mongod || true;
 pkill mongos || true;
 
 cd /home/vagrant;
-rm -Rf mongo_*/;
+rm -Rf mongo_*;
 rm -Rf config/;
 rm -Rf mongos/;

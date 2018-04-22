@@ -27,5 +27,5 @@ git_repos:
   - https://github.com/rhysmeister/ansible.git
 update_git: yes
 aliases:
-  - "py26='cd /home/vagrant && source py26env/bin/activate'"
-  - "py35='cd /home/vagrant && source py35env/bin/activate'"
+  - "py26='cd /home/vagrant && source py26env/bin/activate && cd git/ansible && . hacking/env-setup && cd'"
+  - "py35='cd /home/vagrant && source py35env/bin/activate && cd git/ansible && . hacking/env-setup && cd'"
