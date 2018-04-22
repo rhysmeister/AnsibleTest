@@ -3,9 +3,11 @@ An environment to test Ansible modules based on the following guidelines; http:/
 
 # Requirements
 
-> ansible 2.4.3.0
-> Vagrant 2.0.2
-> Virtualbox 5.2.6
+```
+ansible 2.4.3.0
+Vagrant 2.0.2
+Virtualbox 5.2.6
+```
 
 # Getting started
 
