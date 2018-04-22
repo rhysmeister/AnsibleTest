@@ -1,6 +1,8 @@
 # AnsibleTest
 An environment to test Ansible modules based on the following guidelines; http://docs.ansible.com/ansible/latest/dev_guide/developing_modules.html
 
+This VM will setup an environment that makes it simple to switch between Python versions 2.6 and 3.5 and work with the version of Ansible you have forked to develop your own custom modules.
+
 # Requirements
 
 ```
