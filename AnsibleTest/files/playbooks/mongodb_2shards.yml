@@ -1,0 +1,60 @@
+---
+  - hosts: "localhost"
+    gather_facts: yes
+    become: yes
+
+    tasks:
+
+      - name: Setup 2 MongoDB Replicasets and a mongos
+        shell: /home/vagrant/bash/mongodb_2shards.sh
+        args:
+          creates: /tmp/mongodb*.sock
+        register: mongodb
+        become: no
+
+      - name: Wait a little bit
+        pause:
+          seconds: 10
+        when: mongodb.changed == True
+
+      - name: Ensure replicaset rs0 exists
+        mongodb_replicaset:
+          login_user: admin
+          login_password: secret
+          login_host: "localhost"
+          login_port: 3001
+          login_database: "admin"
+          replica_set: "rs0"
+          members: "localhost:3001,localhost:3002,localhost:3003"
+
+      - name: Ensure replicaset rs1 exists
+        mongodb_replicaset:
+          login_user: admin
+          login_password: secret
+          login_host: "localhost"
+          login_port: 3004
+          login_database: "admin"
+          replica_set: "rs1"
+          members: "localhost:3004,localhost:3005,localhost:3006"
+
+      - name: Wait a little bit
+        pause:
+          seconds: 60
+
+      - name: Ensure shard rs0 exists
+        mongodb_shard:
+          login_user: admin
+          login_password: secret
+          shard: "rs0/localhost:3001"
+          state: present
+
+      - name: Wait a little bit
+        pause:
+          seconds: 10       
+
+      - name: Ensure shard rs1 exists
+        mongodb_shard:
+          login_user: admin
+          login_password: secret
+          shard: "rs1/localhost:3004"
+          state: present

@@ -1,0 +1,25 @@
+---
+  - hosts: "localhost"
+    gather_facts: yes
+    become: yes
+
+    tasks:
+
+      - name: Ensure shard rs0 does not exist
+        mongodb_shard:
+          login_user: admin
+          login_password: secret
+          shard: "rs0"
+          state: absent
+
+      - name: Wait a little bit
+        pause:
+          seconds: 5
+
+      # Can't remove last shard
+      #- name: Ensure shard rs1 does not exist
+      #  mongodb_shard:
+      #    login_user: admin
+      #    login_password: secret
+      #    shard: "rs1"
+      #    state: absent
