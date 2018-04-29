@@ -1,0 +1,61 @@
+---
+  - hosts: "localhost"
+    gather_facts: yes
+    become: yes
+
+    tasks:
+
+      - name: Setup diet MongoDB CLuster
+        shell: /home/vagrant/bash/diet_sharding.sh
+        args:
+          creates: /tmp/mongodb*.sock
+        register: mongodb
+        become: no
+
+      - name: Wait a little bit
+        pause:
+          seconds: 10
+        when: mongodb.changed == True
+
+      - name: Ensure replicaset rs0 exists
+        mongodb_replicaset:
+          login_user: admin
+          login_password: secret
+          login_host: "localhost"
+          login_port: 3001
+          login_database: "admin"
+          replica_set: "rs0"
+          members: "localhost:3001"
+          validate: no
+        register: rs0
+
+      - name: Ensure replicaset rs1 exists
+        mongodb_replicaset:
+          login_user: admin
+          login_password: secret
+          login_host: "localhost"
+          login_port: 3002
+          login_database: "admin"
+          replica_set: "rs1"
+          members: "localhost:3002"
+          validate: no
+
+      - name: Ensure shard rs0 exists
+        mongodb_shard:
+          login_user: admin
+          login_password: secret
+          shard: "rs0/localhost:3001"
+          state: present
+        register: shard1
+
+      - name: Wait a little bit
+        pause:
+          seconds: 10
+        when: shard1.changed == True
+
+      - name: Ensure shard rs1 exists
+        mongodb_shard:
+          login_user: admin
+          login_password: secret
+          shard: "rs1/localhost:3002"
+          state: present
