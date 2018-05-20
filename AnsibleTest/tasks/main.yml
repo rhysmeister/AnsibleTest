@@ -28,7 +28,7 @@
       - "{{ python_versions }}"
 
   - name: Ensure python environments are setup
-    script: install_setup_tools_pip.sh
+    script: bash/install_setup_tools_pip.sh
     args:
       creates: /home/vagrant/py_setuptools_pip.success
 
@@ -89,3 +89,12 @@
       owner: vagrant
       group: vagrant
     with_fileglob: playbooks/*.yml
+
+  - name: Ensure current-ignore.txt is updated appropriately
+    lineinfile:
+      path: /home/vagrant/git/ansible/test/sanity/pep8/current-ignore.txt
+      regexp: "^{{ item }}$"
+      line: "{{ item }}"
+    become: no
+    with_items:
+      - W605
