@@ -45,6 +45,7 @@
       repo: "{{ item }}"
       dest: "/home/vagrant/git/{{ item | basename | replace('.git', '') }}"
       update: "{{ update_git }}"
+      force: yes
     become: no
     with_items:
       - "{{ git_repos }}"
