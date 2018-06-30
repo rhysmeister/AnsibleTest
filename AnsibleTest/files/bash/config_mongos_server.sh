@@ -11,6 +11,8 @@ mongo --port 2999 << EOF
   rs.initiate();
 EOF
 
+sleep 5;
+
 # mongos server
 mkdir -p mongos/;
 mongos --configdb config/localhost:2999 --logpath mongos/log.log --fork;
