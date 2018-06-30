@@ -44,6 +44,8 @@
         mongodb_shard:
           login_user: admin
           login_password: secret
+          login_host: "localhost"
+          login_database: "admin"
           shard: "rs0/localhost:3001"
           state: present
         register: shard1
