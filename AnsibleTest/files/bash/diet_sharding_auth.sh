@@ -2,7 +2,7 @@
 set -e;
 set -u;
 
-/home/vagrant/bash/config_mongos_server.sh;
+/home/vagrant/bash/config_mongos_server_auth.sh;
 
 mkdir /home/vagrant/mongo_3001;
 mkdir /home/vagrant/mongo_3002;
