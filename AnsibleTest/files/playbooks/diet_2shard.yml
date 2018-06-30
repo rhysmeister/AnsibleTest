@@ -5,7 +5,7 @@
 
     tasks:
 
-      - name: Setup diet MongoDB CLuster
+      - name: Setup diet MongoDB Cluster
         shell: /home/vagrant/bash/diet_sharding.sh
         args:
           creates: /tmp/mongodb*.sock
