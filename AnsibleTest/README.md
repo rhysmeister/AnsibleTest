@@ -1,7 +1,8 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+An Ansible role to create a test environment for custom Ansible modules. Python version 2.6 and 3.5 and setup and you cassandra
+easily switch between the two (See aliases). MongoDB and Cassandra version are installed as they are the area the role author is most interested in developing for. It should be simple enough to repurpose the role for other types of modules.
 
 Requirements
 ------------
@@ -27,6 +28,14 @@ Including an example of how to use your role (for instance, with variables passe
       roles:
          - { role: username.rolename, x: 42 }
 
+Role Aliases
+-------------
+
+cass2   - Kill java process and start Cassandra 2 standalone instance.
+cass3   - Kill java process and start Cassandra 3 standalone instance.
+py26    - Setup environment to run Ansible using Python 2.6.
+py35    - Setup environment to run Ansible using Python 3.5.
+
 License
 -------
 
@@ -35,4 +44,5 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Rhys Campbell <rhys.james.campbell@googlemail.com>
+http://
