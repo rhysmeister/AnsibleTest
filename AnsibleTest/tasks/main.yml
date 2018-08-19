@@ -99,3 +99,22 @@
     become: no
     with_items:
       - W605
+
+  - name: Download cassandra archives
+    get_url:
+      url: "{{ item }}"
+      dest: "/home/vagrant/{{ item | basename }}"
+      force: no
+    become: no
+    with_items:
+      - "{{ cassandra_tar_archives }}"
+
+  - name: Unarchive cassandra versions
+    unarchive:
+      src: "/home/vagrant/{{ item | basename }}"
+      dest: "/home/vagrant/"
+      remote_src: yes
+      creates: "/home/vagrant/{{ item | basename | replace('-bin.tar.gz', '') }}"
+    become: no
+    with_items:
+      - "{{ cassandra_tar_archives }}"

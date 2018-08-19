@@ -19,6 +19,8 @@ additional_packages:
   - psmisc
   - python-devel
   - libffi-devel
+  - tar
+  - bzip2
 
 python_versions:
   - https://www.python.org/ftp/python/2.6.9/Python-2.6.9.tgz
@@ -29,3 +31,8 @@ update_git: yes
 aliases:
   - "py26='cd /home/vagrant && source py26env/bin/activate && cd git/ansible && . hacking/env-setup && cd'"
   - "py35='cd /home/vagrant && source py35env/bin/activate && cd git/ansible && . hacking/env-setup && cd'"
+  - "cass2='{ if pgrep -f cassandra; then kill $(pgrep -f cassandra); fi; sleep 3; } && /home/vagrant/apache-cassandra-2.2.13/bin/cassandra'"
+  - "cass3='{ if pgrep -f cassandra; then kill $(pgrep -f cassandra); fi; sleep 3; } && /home/vagrant/apache-cassandra-3.0.17/bin/cassandra'"
+cassandra_tar_archives:
+  - http://www-eu.apache.org/dist/cassandra/2.2.13/apache-cassandra-2.2.13-bin.tar.gz
+  - http://www-us.apache.org/dist/cassandra/3.0.17/apache-cassandra-3.0.17-bin.tar.gz
