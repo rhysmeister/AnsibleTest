@@ -27,6 +27,7 @@ python_versions:
   - https://www.python.org/ftp/python/3.5.5/Python-3.5.5.tgz
 git_repos:
   - https://github.com/rhysmeister/ansible.git
+  - https://github.com/rhysmeister/AnsibleModuleGenerator.git
 update_git: yes
 aliases:
   - "py26='cd /home/vagrant && source py26env/bin/activate && cd git/ansible && . hacking/env-setup && cd'"
