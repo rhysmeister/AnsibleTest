@@ -2,6 +2,10 @@
   - hosts: "localhost"
     gather_facts: yes
     become: yes
+    vars:
+      members: [ "localhost:3001",
+                "localhost:3002",
+                "localhost:3003" ]
 
     tasks:
 
@@ -25,6 +29,4 @@
           login_port: 3001
           login_database: "admin"
           replica_set: "rs0"
-          members:[ "localhost:3001",
-                    "localhost:3002",
-                    "localhost:3003" ]
+          members: "{{ members }}"
