@@ -36,6 +36,30 @@ cass3   - Kill java process and start Cassandra 3 standalone instance.
 py26    - Setup environment to run Ansible using Python 2.6.
 py35    - Setup environment to run Ansible using Python 3.5.
 
+Test process
+===============
+
+mongodb_replicaset
+
+py26
+ansible-playbook playbooks/mongodb_replicaset.yml
+ansible-playbook playbooks/mongodb_replicaset.yml
+bash/teardown_mongo.sh
+ansible-playbook playbooks/mongodb_replicaset_members_list1.yml
+ansible-playbook playbooks/mongodb_replicaset_members_list1.yml
+bash/teardown_mongo.sh
+ansible-playbook playbooks/mongodb_replicaset_members_list2.yml
+ansible-playbook playbooks/mongodb_replicaset_members_list2.yml
+bash/teardown_mongo.sh
+# Todo incorporate this in playbook as an option
+bash/mongodb_replicaset_auth.sh 3000 rs0
+ansible-playbook playbooks/mongodb_replicaset.yml
+ansible-playbook playbooks/mongodb_replicaset_members_list1.yml
+ansible-playbook playbooks/mongodb_replicaset_members_list2.yml
+
+py35
+# repeat above
+
 License
 -------
 
