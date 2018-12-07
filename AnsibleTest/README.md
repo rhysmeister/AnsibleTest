@@ -58,7 +58,21 @@ ansible-playbook playbooks/mongodb_replicaset_members_list1.yml
 ansible-playbook playbooks/mongodb_replicaset_members_list2.yml
 
 py35
+bash/teardown_mongo.sh
 # repeat above
+
+mongodb_shard
+
+py26
+ansible-playbook playbooks/diet_2shard.yml
+ansible-playbook playbooks/diet_2shard.yml
+ansible-playbook playbooks/mongodb_remove_2shards.yml
+
+py35
+bash/teardown_mongo.sh
+# repeat above
+
+
 
 License
 -------
